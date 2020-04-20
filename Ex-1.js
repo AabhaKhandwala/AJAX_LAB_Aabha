@@ -65,7 +65,7 @@ $("#target5").click(function() {
     method: 'POST',
     url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts',
     data: {
-        id: 1,
+        userId: 1,
         title: "this is a title",
         body: "This is the body"
     },
