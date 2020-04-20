@@ -60,40 +60,108 @@ $("#target4").click(function() {
 
 // Create a new post and log the id generated for it by the server
 $("#target5").click(function() {
-    $.post('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts', {
     
-	userId: 1,
-	title: "this is a title",
-	body: "This is the body"
-}, function(data){
-    console.log(data.id)
-    data.forEach(function() {
-        var p=$('<p></p>');
-        p.text(JSON.stringify(data.id));
-        $('body').append(p);
-    });
+    $.ajax({
+    method: 'POST',
+    url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts',
+    data: {
+        id: 1,
+        title: "this is a title",
+        body: "This is the body"
+    },
+    
+    complete:function(data){
+         //console.log(data.id)
+             //data.forEach(function() {
+                var p=$('<p></p>');
+                p.text(JSON.stringify(data));
+                //p.text(data.id);
+                console.log(data);
+                //$('body').append('<p> id:' +data.id +'</p>');
+                $('body').append(p);
+    //})
+            }
+
+    })
 });
-});
 
 
-// Replace the post with id of 12 and render the responseJSON
+    
+        
+            
+            
+        
+    //$.post('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts', {
+    
+	//userId: 1,
+	//title: "this is a title",
+	//body: "This is the body"
+// }, function(data){
+//     console.log(data.id)
+//     data.forEach(function() {
+//         var p=$('<p></p>');
+//         p.text(JSON.stringify(data.id));
+//         $('body').append(p);
+//     });
+// });
+// });
 
-// $.ajax({
-// 	method: 'PUT',
-// 	url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts/12',
-// 	data: {
-// 		userId: 1,
-// 		title: "New Post",
-// 		body: "New post added"
-// 	},
-// 	complete: function(response){
-// 		console.log(response.responseJSON);
-// 	}
-// })
+
+// Replace the post with id of 14 and render the responseJSON
+$("#target6").click(function(){
+    $.ajax({
+        method: 'PUT',
+        url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts/14',
+        data: {
+            userId: 1,
+            title: "New Post",
+            body: "New post added"
+        },
+        complete: function(response){
+            var p=$('<p></p>')
+            p.text(JSON.stringify(response));
+            $('body').append(p);
+        //complete: function(response){
+            //console.log(response.responseJSON);
+        }
+    })
+    })
+
 
 
 // Update the title of post with id of 12 and render responseJSON
+
+$("#target7").click(function(){
+    $.ajax({
+        method: 'PATCH',
+        url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts/14',
+        data: {
+    title: "patched it"
+    },
+        complete: function(response){
+            var p=$('<p></p>')
+            p.text(JSON.stringify(response));
+            $('body').append(p);
+            //console.log(response.responseJSON);
+        }
+    })
+    })
 // Delete the post with id of 12 and render a success message
+$("#target8").click(function(){
+    $.ajax({
+        method: 'DELETE',
+        url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts/14',
+        data: {
+    title: "Delete it"
+    },
+        complete: function(response){
+            var p=$('<p></p>')
+            p.text(JSON.stringify(response));
+            $('body').append(p);
+            //console.log(response.statusText);
+        }
+    })
+    })
 // Display a list of posts.
 // When the user clicks on a post, display all the comments from that post
 // Display a link back to all posts
